@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Homepage</title>
+    <meta charset='utf-8' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <p style="text-align:center">Message Board</p>
+    </div>
+    <div id="message"></div>
+    <form method="post" id="form" action="/message" onsubmit="return getdata()">
+        作者 <input type="text" id="author" name="author" /> email <input type="text" id="email" name="email" /></br>
+        內容 </br><input type="text" id="content" name="content" style="height:30% ; width:100%" />
+
+        <input type="submit" name="submit" value="submit">
+    </form>
+<script>
+    
+    function getdata(){
+        var data={author,email,content}
+        data.author=document.forms["form"].author.value
+        data.email=document.forms["form"].email.value
+        data.content=document.forms["form"].content.value
+        $.ajax({
+            url:'/message',
+            type:'post',
+            data:data,
+            success:function (result){
+                console.log("ajax success")
+            }
+            
+        })
+        return false
+    }
+</script>
+</body>
+
+</html>
