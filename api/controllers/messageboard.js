@@ -4,5 +4,5 @@ exports.index = function(req,res){
 exports.message = function(req,res){
     var msg = req.body
     console.log(msg)
-    res.send('hahahahahaha')
+    res.send(msg)
 }

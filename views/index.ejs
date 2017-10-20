@@ -8,34 +8,46 @@
 
 <body>
     <div>
-        <p style="text-align:center">Message Board</p>
+        <p>Message Board</p>
     </div>
-    <div id="message"></div>
+    <div id="show"></div>
+    </br></br>
+    
     <form method="post" id="form" action="/message" onsubmit="return getdata()">
         作者 <input type="text" id="author" name="author" /> email <input type="text" id="email" name="email" /></br>
         內容 </br><input type="text" id="content" name="content" style="height:30% ; width:100%" />
-
+        <p id="time" />
         <input type="submit" name="submit" value="submit">
     </form>
-<script>
-    
-    function getdata(){
-        var data={author,email,content}
-        data.author=document.forms["form"].author.value
-        data.email=document.forms["form"].email.value
-        data.content=document.forms["form"].content.value
-        $.ajax({
-            url:'/message',
-            type:'post',
-            data:data,
-            success:function (result){
-                console.log("ajax success")
-            }
-            
-        })
-        return false
-    }
-</script>
+    <script>
+        function getdata() {
+
+            var data = { author, email, content, time }
+            data.author = document.forms["form"].author.value
+            data.email = document.forms["form"].email.value
+            data.content = document.forms["form"].content.value
+            data.time = new Date();
+            $.ajax({
+                url: '/message',
+                type: 'post',
+                data: data,
+                success: function (result) {
+                    appendmsg(result);
+                    document.getElementById("form").reset();
+                }
+            })
+            return false
+        }
+        function appendmsg(msg) {
+            const div = document.createElement("div")
+            div.innerText= "Author："+msg.author+"\n"
+                            + "Email："+msg.email+"\n"
+                            +"Content："+msg.content+"\n"
+                            + "Time："+msg.time+"\n"
+            div.innerHTML += "<div style=\"border:0.5px solid black;\">"
+            document.getElementById("show").appendChild(div)
+        }
+    </script>
 </body>
 
 </html>
