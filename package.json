@@ -2,8 +2,8 @@
   "name": "MessageBoadrd",
   "version": "0.0.1",
   "engines": {
-       "node": "^6.0.0"
-    },
+    "node": "^6.0.0"
+  },
   "private": true,
   "description": "New Swagger API Project",
   "keywords": [],
