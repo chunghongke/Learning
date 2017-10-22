@@ -1,5 +1,6 @@
 const msg = require('../api/messageboard.js')
 const assert = require('chai').assert
+
 describe('test email format', function(){
   it('should be a legal mail-address',()=>{
     assert(msg.test_email('ano876@gmail.com'))
@@ -17,7 +18,6 @@ describe('test email format', function(){
     assert.isFalse(msg.test_email("@ssafsadf.casdf"))
     assert.isFalse(msg.test_email("sfasdf@"))
   })
-  
 })
 
 describe('test the legal name',()=>{
@@ -35,11 +35,11 @@ describe('test the legal name',()=>{
     assert.isFalse(msg.test_name(' '))
   })
   it('should not contain number',()=>{
-    assert.isFalse(msg.test_name('name1234'))
+    assert.isFalse(msg.test_name('name456'))
   })
   it('should not contain special character',()=>{
     assert.isFalse(msg.test_name('`qqwr'))
-    assert.isFalse(msg.test_name('>wr'))
+    assert.isFalse(msg.test_name('wr'))
     assert.isFalse(msg.test_name('@qq<r'))
     assert.isFalse(msg.test_name('#q.wr'))
     assert.isFalse(msg.test_name('$q:wr'))
@@ -49,4 +49,11 @@ describe('test the legal name',()=>{
     assert.isFalse(msg.test_name('|q-wr'))
     assert.isFalse(msg.test_name('()qqwr'))
   })
+})
+
+describe('filter the bad word',()=>{
+  it('should not contain the bad word',()=>{
+    assert.isFalse(msg.test_content('what are you fuck doing'))
+  })
+
 })

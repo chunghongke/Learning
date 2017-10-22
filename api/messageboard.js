@@ -12,7 +12,7 @@ function test_email(mail){
 function test_name(name){
     let illegal_word=["fuck","bitch"," "]
     let num=/\d/
-    let special=/[()[\]+=*&^%$#<>_|~`@!',:;./-]/
+    let special=/[()[\]+=*&^%$#<>_|~`@!',:;./\-]/
     if(typeof(name) !== 'string')
         return false
     for(let val of illegal_word){
@@ -26,9 +26,20 @@ function test_name(name){
     }
     return true
 }
+function test_content(msg){
+    let bad_word=/^fuck$/
+    msg=msg.split(' ')
+    for(let val of msg){
+        if(bad_word.test(val)){
+            return false
+        }
+    }
+    return true
+}
 module.exports = {
     index,
     message,
     test_email,
-    test_name
+    test_name,
+    test_content
 }
