@@ -39,7 +39,7 @@ describe('test the legal name',()=>{
   })
   it('should not contain special character',()=>{
     assert.isFalse(msg.test_name('`qqwr'))
-    assert.isFalse(msg.test_name('wr'))
+    assert.isFalse(msg.test_name('_wr'))
     assert.isFalse(msg.test_name('@qq<r'))
     assert.isFalse(msg.test_name('#q.wr'))
     assert.isFalse(msg.test_name('$q:wr'))
