@@ -17,6 +17,7 @@ describe('test email format', function(){
   it('should have character before and after "@" sign ',() => {
     assert.isFalse(msg.test_email("@ssafsadf.casdf"))
     assert.isFalse(msg.test_email("sfasdf@"))
+    assert.isFalse(msg.test_email("@"))
   })
 })
 
