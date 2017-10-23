@@ -1,5 +1,5 @@
 const server = require('../app.js')
-const msg = require('../api/messageboard.js')
+const msg = require('../src/messageboard.js')
 const assert = require('chai').assert
 const request = require('supertest')
 
@@ -9,12 +9,14 @@ describe('test req and res', () => {
   it('should return res as mockreq', function (done) {
     request(server)
       .post('/message')
-      .type('form')
+      .set('Accept', 'application/json')
       .send(mockreq)
-      .expect(200, (err, res) => {
+      .expect(200)
+      .end((err, res) => {
         assert.notExists(err)
         assert.deepEqual(res.body, mockreq)
-        done()
+        assert.isFalse(res.body === "sfdf")
+        done();
       })
   })
 })
