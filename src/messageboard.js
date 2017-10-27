@@ -27,7 +27,7 @@ function test_name(name) {
     return true
 }
 function test_content(msg) {
-    let bad_word = /^fuck$/
+    let bad_word = /^fuck$||^bitch$||^shit$/
     msg = msg.split(' ')
     for (let val of msg) {
         if (bad_word.test(val)) {
