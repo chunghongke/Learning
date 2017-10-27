@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 const app = require('express')();
-const port = process.env.port || 10010
+const PORT = process.env.PORT || 10010
 const router = require('./src/messageboard.js')
 module.exports = app;
 
@@ -10,4 +10,4 @@ app.use(bodyParser.json())
 
 app.get("/", router.index)
 app.post("/message", router.message)
-app.listen(port);
+app.listen(PORT);
